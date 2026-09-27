@@ -1,0 +1,56 @@
+{
+  "name": "muse-for-linux",
+  "productName": "Muse",
+  "version": "0.1.0",
+  "description": "Unofficial Linux desktop wrapper for muse.ai",
+  "homepage": "https://github.com/KangweiZhu/muse-for-linux",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KangweiZhu/muse-for-linux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KangweiZhu/muse-for-linux/issues"
+  },
+  "desktopName": "muse.desktop",
+  "main": "src/main.js",
+  "private": true,
+  "author": "Kangwei(Anicaa) Zhu <anicaazhu@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --linux && npm run install:local",
+    "dist:appimage": "electron-builder --linux AppImage && npm run install:local",
+    "dist:pacman": "electron-builder --linux pacman",
+    "install:local": "bash scripts/install-local.sh",
+    "uninstall:local": "bash scripts/install-local.sh --uninstall"
+  },
+  "devDependencies": {
+    "electron": "^44.4.5",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "io.github.kangweizhu.muse-for-linux",
+    "productName": "Muse",
+    "files": [
+      "src/**/*",
+      "assets/icon.png"
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "pacman",
+        "deb"
+      ],
+      "icon": "assets/icon.png",
+      "executableName": "muse",
+      "syncDesktopName": true,
+      "desktop": {
+        "entry": {
+          "GenericName": "AI Agent",
+          "Keywords": "Muse;Meta;AI;Agent;Chat;Assistant;",
+          "Categories": "Utility;Network;"
+        }
+      }
+    }
+  }
+}
